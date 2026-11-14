@@ -16,7 +16,13 @@ api.interceptors.request.use((config) => {
   // When sending FormData, delete manual Content-Type header so the browser / Axios automatically
   // appends the multipart boundary string: multipart/form-data; boundary=...
   if (config.data instanceof FormData) {
-    delete config.headers['Content-Type'];
+    if (config.headers && typeof config.headers.delete === 'function') {
+      config.headers.delete('Content-Type');
+      config.headers.delete('content-type');
+    } else if (config.headers) {
+      delete config.headers['Content-Type'];
+      delete config.headers['content-type'];
+    }
   }
   return config;
 }, (error) => {

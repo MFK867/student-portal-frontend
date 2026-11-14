@@ -353,7 +353,9 @@ export const StudentDashboard = () => {
           await uploadSrsDocument(currentProjectId, srsFile);
           setSrsFile(null);
         } catch (srsErr) {
-          setError(prev => (prev ? prev + ' ' : '') + 'Note: SRS file upload failed.');
+          console.error("SRS Upload failed:", srsErr);
+          const detail = srsErr.response?.data?.detail || srsErr.message || 'SRS upload failed';
+          setError(prev => (prev ? prev + ' ' : '') + `Note: SRS file upload failed (${detail}).`);
         }
       }
 
@@ -363,7 +365,9 @@ export const StudentDashboard = () => {
           await uploadSourceCode(currentProjectId, codeFile);
           setCodeFile(null);
         } catch (codeErr) {
-          setError(prev => (prev ? prev + ' ' : '') + 'Note: Source code ZIP upload failed.');
+          console.error("Code Upload failed:", codeErr);
+          const detail = codeErr.response?.data?.detail || codeErr.message || 'Source code upload failed';
+          setError(prev => (prev ? prev + ' ' : '') + `Note: Source code ZIP upload failed (${detail}).`);
         }
       }
 
