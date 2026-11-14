@@ -35,12 +35,6 @@ export const StudentLoginPage = () => {
     }
   };
 
-  const handleDemoFill = () => {
-    setEmail('ali.ahmad@tuf.edu.pk');
-    setPassword('StudentPassword123');
-    setError('');
-  };
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-between">
       {/* Top Header */}
@@ -129,14 +123,6 @@ export const StudentLoginPage = () => {
                 />
                 <span className="text-xs text-slate-600">Remember session</span>
               </label>
-
-              <button
-                type="button"
-                onClick={handleDemoFill}
-                className="text-xs font-semibold text-[#0B1320] hover:underline"
-              >
-                Autofill Demo Login
-              </button>
             </div>
 
             <button

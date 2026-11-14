@@ -139,38 +139,6 @@ export const TeacherDashboard = () => {
     return 'F';
   };
 
-  // Autofill Grading Rubric
-  const handleAutofillGrading = () => {
-    const sampleRemarks = {
-      "Problem Identification": { ratio: 0.95, comment: "Problem definition is academically sound, rigorously motivated, and clearly targeted." },
-      "SRS Documentation": { ratio: 0.93, comment: "Comprehensive IEEE compliant functional requirements, use cases, and diagrams." },
-      "System Design & Architecture": { ratio: 0.93, comment: "Clean component modularity, well-normalized relational schema, and robust service contracts." },
-      "Implementation": { ratio: 0.94, comment: "Production-grade execution with responsive front-end and secure RESTful endpoints." },
-      "Code Quality": { ratio: 0.90, comment: "Consistent naming standards, modular helper utilities, and defensive error handling." },
-      "Functionality": { ratio: 0.93, comment: "All core user flows operate as specified without runtime exceptions." },
-      "Innovation & Creativity": { ratio: 0.90, comment: "Novel practical application addressing real-world operational challenges." },
-      "Presentation / Demonstration": { ratio: 0.90, comment: "Articulate technical explanation and confident demonstration of live workflows." },
-    };
-
-    const newScores = {};
-    const newComments = {};
-
-    criteria.forEach((c) => {
-      const info = sampleRemarks[c.name] || { ratio: 0.92, comment: "Meets academic specifications." };
-      const marks = Math.min(c.maximum_marks, Math.round(c.maximum_marks * info.ratio * 2) / 2);
-      newScores[c.id] = marks;
-      newComments[c.id] = info.comment;
-    });
-
-    setScores(newScores);
-    setScoreComments(newComments);
-    setOverallFeedback(
-      "Outstanding engineering capstone. The software architecture satisfies academic degree standards with commendable rigor, high code quality, and dependable operational reliability. Approved for publication."
-    );
-    setError('');
-    setSuccess('Sample rubric grades, criteria comments, and evaluator feedback autofilled.');
-  };
-
   // Save Title Decision
   const handleSaveTitleDecision = async () => {
     if (!selectedId) return;
@@ -552,14 +520,6 @@ export const TeacherDashboard = () => {
                       Score: <span className="font-bold text-slate-900">{totalScore}</span> / {maxScore} &bull; Grade: <span className="font-bold text-slate-900">{calculateGrade(percentage)}</span> ({percentage.toFixed(1)}%)
                     </span>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={handleAutofillGrading}
-                    className="border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-800 px-3.5 py-1.5 text-xs font-semibold rounded-md shadow-2xs transition-colors"
-                  >
-                    Autofill Grading
-                  </button>
                 </div>
 
                 {/* Criteria Rows */}

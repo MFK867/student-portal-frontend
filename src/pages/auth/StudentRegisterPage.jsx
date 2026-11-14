@@ -15,15 +15,6 @@ export const StudentRegisterPage = () => {
 
   const ROLL_NO_REGEX = /^\d{4}-[A-Za-z]{2,5}-[A-Za-z]{2,5}-\d{2,5}$/;
 
-  const handleAutofill = () => {
-    setError('');
-    const randomSuffix = Math.floor(100 + Math.random() * 900);
-    setName(`Hamza Malik ${randomSuffix}`);
-    setStudentId(`2023-BS-AI-${randomSuffix}`);
-    setEmail(`hamza.${randomSuffix}@tuf.edu.pk`);
-    setPassword('StudentPassword123');
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -71,18 +62,6 @@ export const StudentRegisterPage = () => {
           </div>
           <h1 className="text-xl font-bold tracking-tight text-slate-900">Student Registration</h1>
           <p className="text-xs text-slate-500 mt-1">Create an account to submit and manage your project</p>
-        </div>
-
-        {/* Demo Quickfill */}
-        <div className="mb-6 p-3.5 bg-slate-50 border border-slate-200/80 rounded-lg flex justify-between items-center">
-          <span className="text-xs text-slate-600 font-medium">Need sample student info?</span>
-          <button
-            type="button"
-            onClick={handleAutofill}
-            className="py-1 px-2.5 border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-md shadow-2xs transition-colors"
-          >
-            Autofill Sample
-          </button>
         </div>
 
         {/* Error Notice */}

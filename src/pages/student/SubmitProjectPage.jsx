@@ -226,60 +226,6 @@ export const SubmitProjectPage = () => {
     return formData.custom_technologies.some(c => c.toLowerCase() === techName.toLowerCase());
   };
 
-  // ----------------- AUTOFILL FEATURE (Year-First Roll Numbers, Max 3 Students) -----------------
-  const handleAutofill = () => {
-    setError('');
-    setFieldErrors({});
-
-    const sampleTechNames = ['Python', 'FastAPI', 'React', 'Docker', 'MySQL', 'OpenCV'];
-    const matchedIds = availableTechs
-      .filter(t => sampleTechNames.includes(t.name))
-      .map(t => t.id);
-
-    const aiCategory = categories.find(c =>
-      c.name.toLowerCase().includes('intelligence') ||
-      c.name.toLowerCase().includes('vision') ||
-      c.name.toLowerCase().includes('computer')
-    ) || categories[0];
-
-    // MAXIMUM STUDENTS POLICY: 3 Students Total (1 Project Lead + 2 Team Members)
-    const validTeamMembers = [
-      {
-        student_name: 'Hamza Tariq',
-        student_id_number: '2023-BS-AI-025',
-        student_email: 'hamza.tariq@tuf.edu.pk',
-        member_role: 'Lead ML Engineer'
-      },
-      {
-        student_name: 'Zainab Bibi',
-        student_id_number: '2023-BS-AI-038',
-        student_email: 'zainab.bibi@tuf.edu.pk',
-        member_role: 'Computer Vision Specialist'
-      }
-    ];
-
-    setFormData({
-      project_title: 'AI-Powered Autonomous Crop Pathology Diagnosis & Treatment Recommendation Platform',
-      short_description: 'An applied machine learning system that diagnoses plant diseases from leaf imagery in real-time, providing targeted treatment protocols and fertilizer guidance for regional agriculture.',
-      detailed_description: `SYSTEM ARCHITECTURE SPECIFICATION:\n1. INGESTION LAYER: High-resolution RGB multi-spectral leaf image capture with automated noise filtration and affine transformations.\n2. INFERENCE ENGINE: Custom convolutional neural network with inverted residual blocks quantized for efficient sub-50ms mobile deployment.\n3. TREATMENT ADVISORY SERVICE: Rule-based agrarian expert system cross-referencing disease severity metrics against national crop standards.\n4. BACKEND INTEGRATION: Asynchronous FastAPI REST microservices containerized via Docker and connected to a MySQL relational storage engine.\n5. FRONTEND PORTAL: Responsive React SPA providing drag-and-drop diagnostic uploads, confidence score distributions, and PDF treatment export.`,
-      problem_statement: `Crop yield losses due to late pathogen detection cost regional agricultural producers an estimated 25% of annual harvest value. Farmers in rural districts lack rapid access to certified plant pathologists, causing misdiagnosis and improper pesticide over-application.`,
-      proposed_solution: `A mobile-first edge neural network capable of classifying 38 distinct crop disease classes directly in the field without persistent high-bandwidth internet connectivity, integrated with instant automated remedy suggestions.`,
-      objectives: `1. Train a lightweight vision model achieving >94% top-1 accuracy on tomato, wheat, and cotton foliar datasets.\n2. Design and deploy RESTful API endpoints with sub-100ms inference turnaround.\n3. Integrate an IEEE-compliant SRS document and fully tested codebase repository.`,
-      category_id: aiCategory ? aiCategory.id.toString() : '1',
-      project_type: 'Final Year Project',
-      academic_session: 'Fall 2026',
-      technology_ids: matchedIds.length > 0 ? matchedIds : [1, 2, 3],
-      custom_technologies: ['PyTorch', 'TensorRT', 'Tailwind CSS'],
-      is_group: true,
-      members: validTeamMembers,
-      title_image_url: '/api/files/images/crop_ai.svg',
-      github_url: 'https://github.com/tuf-projects/crop-pathology-ai',
-      demo_video_url: 'https://youtube.com/watch?v=demo_crop_ai',
-      publication_visibility: true
-    });
-    setTitleImagePreview('/api/files/images/crop_ai.svg');
-  };
-
   // ----------------- TEAM MEMBER MANAGEMENT (MAX 3 STUDENTS TOTAL: 1 LEAD + 2 MEMBERS) -----------------
   const addTeamMember = () => {
     setError('');
@@ -645,15 +591,6 @@ export const SubmitProjectPage = () => {
             Record semester projects and capstones with SRS documentation, source code archives, and team contributors.
           </p>
         </div>
-
-        <button
-          type="button"
-          onClick={handleAutofill}
-          className="inline-flex items-center space-x-2 px-4 py-2.5 bg-white text-slate-900 hover:bg-slate-100 text-xs font-bold rounded-xl shadow transition-all flex-shrink-0"
-        >
-          <Sparkles className="w-4 h-4 text-amber-500" />
-          <span>Autofill Sample Project</span>
-        </button>
       </div>
 
       {/* 4 Clean Steps Navigation */}

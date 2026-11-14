@@ -128,105 +128,6 @@ export const StudentDashboard = () => {
     }
   };
 
-  // 5-7 Sample Projects for Autofill
-  const sampleProjects = [
-    {
-      title: "Autonomous Edge AI Surveillance & Anomaly Detection",
-      categoryName: "Artificial Intelligence",
-      summary: "High-speed real-time computer vision system running on edge devices to identify safety anomalies and intrusions.",
-      problem: "Traditional closed-circuit camera systems require manual monitoring, causing high latency in emergency response.",
-      solution: "Deploying quantized YOLO and transformer models on edge hardware with immediate automated incident reporting.",
-      objectives: "1. Achieve 30 FPS inference on edge hardware.\n2. Maintain under 200ms notification latency for safety alerts.",
-      technologies: "Python, PyTorch, OpenCV, TensorRT, FastAPI",
-      members: [
-        { student_name: "Hamza Tariq", student_id_number: "2023-BS-AI-014", student_email: "hamza.tariq@tuf.edu.pk", member_role: "Member" },
-        { student_name: "Ayesha Noor", student_id_number: "2023-BS-AI-019", student_email: "ayesha.noor@tuf.edu.pk", member_role: "Member" }
-      ]
-    },
-    {
-      title: "Decentralized Academic Credential Verification on Ethereum",
-      categoryName: "Blockchain",
-      summary: "Tamper-proof cryptographic ledger verification of student transcripts and degrees.",
-      problem: "Paper certificates and centralized record portals are vulnerable to forgery and slow manual verification processes.",
-      solution: "Smart contract issuance of soulbound credential hashes verifiable by employers in seconds.",
-      objectives: "1. Deploy ERC-721 non-transferable token contract.\n2. Provide zero-knowledge proof verification interface.",
-      technologies: "Solidity, React, Node.js, Web3.js, Ethers.js",
-      members: [
-        { student_name: "Bilal Hassan", student_id_number: "2023-BS-CS-088", student_email: "bilal.hassan@tuf.edu.pk", member_role: "Member" }
-      ]
-    },
-    {
-      title: "Cloud-Native Microservices Orchestrator for High-Throughput Fintech",
-      categoryName: "Software Engineering",
-      summary: "Distributed event-driven transaction processing system with ACID compliance and circuit-breaker fault tolerance.",
-      problem: "Monolithic transaction engines suffer bottlenecks and single-point-of-failure downtimes under peak load.",
-      solution: "Asynchronous event-sourcing architecture utilizing Kafka message streaming and distributed consensus.",
-      objectives: "1. Handle 5,000 transactions per second with p99 latency < 50ms.\n2. Ensure zero data loss under simulated node failure.",
-      technologies: "Go, Docker, Kubernetes, Apache Kafka, PostgreSQL",
-      members: [
-        { student_name: "Usman Ghani", student_id_number: "2023-BS-SE-034", student_email: "usman.ghani@tuf.edu.pk", member_role: "Member" },
-        { student_name: "Zainab Bibi", student_id_number: "2023-BS-SE-051", student_email: "zainab.bibi@tuf.edu.pk", member_role: "Member" }
-      ]
-    },
-    {
-      title: "Smart Grid IoT Energy Optimization with Predictive Load Balancing",
-      categoryName: "Internet of Things",
-      summary: "Micro-grid sensor network monitoring commercial electricity consumption and dynamically shedding non-critical loads.",
-      problem: "Unpredictable peak demand causes industrial power surges, expensive surcharges, and transformer degradation.",
-      solution: "ESP32 telemetry nodes streaming power metrics to a predictive reinforcement learning agent.",
-      objectives: "1. Reduce peak electricity bill spikes by 22%.\n2. Provide automated real-time alerts via MQTT dashboard.",
-      technologies: "C++, ESP32, Python, MQTT, InfluxDB, Grafana",
-      members: [
-        { student_name: "Saad Farooq", student_id_number: "2023-BS-EE-008", student_email: "saad.farooq@tuf.edu.pk", member_role: "Member" }
-      ]
-    },
-    {
-      title: "Automated Multi-Agent Code Auditing & Vulnerability Discovery Engine",
-      categoryName: "Cybersecurity",
-      summary: "LLM-driven security agent orchestrating static analysis, AST inspection, and fuzzing to detect zero-day exploits.",
-      problem: "Manual security reviews cannot keep pace with continuous integration delivery pipelines.",
-      solution: "Multi-agent framework combining static semantic graphs with heuristic taint analysis to flag vulnerabilities.",
-      objectives: "1. Detect OWASP Top 10 vulnerabilities with < 5% false positive rate.\n2. Generate automated Git patches for remediation.",
-      technologies: "Python, FastAPI, Tree-sitter, LangChain, Docker",
-      members: [
-        { student_name: "Khurram Shahzad", student_id_number: "2023-BS-CS-062", student_email: "khurram.s@tuf.edu.pk", member_role: "Member" },
-        { student_name: "Mariam Asif", student_id_number: "2023-BS-CS-077", student_email: "mariam.asif@tuf.edu.pk", member_role: "Member" }
-      ]
-    },
-    {
-      title: "AI-Driven Precision Agriculture & Crop Disease Diagnostics",
-      categoryName: "Machine Learning",
-      summary: "Mobile application identifying leaf pathogens and recommending treatments using offline neural networks.",
-      problem: "Farmers lack immediate access to agricultural pathologists, leading to delayed disease containment.",
-      solution: "On-device convolutional neural network analyzing smartphone photos of crops to classify diseases instantly.",
-      objectives: "1. Achieve over 94% diagnostic accuracy across 38 common crop diseases.\n2. Function fully offline without internet connectivity.",
-      technologies: "Flutter, TensorFlow Lite, Python, FastAPI",
-      members: [
-        { student_name: "Omer Farooq", student_id_number: "2023-BS-AI-041", student_email: "omer.farooq@tuf.edu.pk", member_role: "Member" }
-      ]
-    }
-  ];
-
-  const handleAutofill = () => {
-    const sample = sampleProjects[Math.floor(Math.random() * sampleProjects.length)];
-    const matchingCat = categories.find(c => c.name.toLowerCase() === sample.categoryName.toLowerCase());
-
-    setFormData(prev => ({
-      ...prev,
-      project_title: sample.title,
-      short_description: sample.summary,
-      detailed_description: `${sample.summary} This capstone incorporates production-grade engineering principles, rigorous test coverage, and modular service communication.`,
-      problem_statement: sample.problem,
-      proposed_solution: sample.solution,
-      objectives: sample.objectives,
-      category_id: matchingCat ? matchingCat.id : (categories[0]?.id || ''),
-      custom_technologies: sample.technologies,
-      members: sample.members
-    }));
-    setError('');
-    setSuccess('Sample project details autofilled successfully.');
-  };
-
   // Add / Remove Team Members (Max 2 members + 1 lead = 3 students total)
   const handleAddMember = () => {
     if (formData.members.length >= 2) {
@@ -625,15 +526,6 @@ export const StudentDashboard = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  {!project && (
-                    <button
-                      type="button"
-                      onClick={handleAutofill}
-                      className="border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-800 text-xs font-medium px-3.5 py-1.5 rounded-md shadow-2xs transition-colors"
-                    >
-                      Autofill Sample Project
-                    </button>
-                  )}
                   {project && (
                     <button
                       type="button"

@@ -196,44 +196,6 @@ export const TeacherProjectReviewPage = () => {
     }
   };
 
-  // Autofill Grading Rubric & Comments
-  const handleAutofillGrading = () => {
-    const sampleRemarks = {
-      "Problem Identification": { ratio: 0.95, comment: "Exceptional clarity in problem formulation and strong academic motivation." },
-      "SRS Documentation": { ratio: 0.93, comment: "Thorough IEEE compliant functional and non-functional requirements." },
-      "System Design & Architecture": { ratio: 0.93, comment: "Well-modularized component design with complete database schemas." },
-      "Implementation": { ratio: 0.94, comment: "Robust end-to-end implementation with high-performance API endpoints." },
-      "Code Quality": { ratio: 0.90, comment: "Clean code structure, modular functions, and meaningful naming conventions." },
-      "Functionality": { ratio: 0.93, comment: "Comprehensive test coverage and reliable edge-case handling." },
-      "Innovation & Creativity": { ratio: 0.90, comment: "Creative engineering approach with direct real-world utility." },
-      "Presentation / Demonstration": { ratio: 0.90, comment: "Confident presentation, articulate defense, and solid demonstration." },
-    };
-
-    const newScores = {};
-    const newComments = {};
-
-    criteria.forEach((c) => {
-      const info = sampleRemarks[c.name] || { ratio: 0.92, comment: "Meets academic specifications." };
-      const marks = Math.min(c.maximum_marks, Math.round(c.maximum_marks * info.ratio * 2) / 2);
-      newScores[c.id] = marks;
-      newComments[c.id] = info.comment;
-    });
-
-    setScores(newScores);
-    setScoreComments(newComments);
-    setOverallFeedback(
-      "Outstanding project submission demonstrating professional software engineering standards. The system architecture is cleanly structured, SRS requirements are fully addressed, and the source code exhibits exemplary modularity and defensive coding. Recommended for official publication in the University Project Showcase."
-    );
-    setError('');
-    setSuccess('Sample grading marks, rubric criteria remarks, and feedback autofilled.');
-  };
-
-  const handleAutofillTitleApproval = () => {
-    setTitleDecision('Approved');
-    setTitleReason('The project title and technical scope are sound, innovative, and meet departmental final-year degree requirements.');
-    setError('');
-  };
-
   if (loading) {
     return <div className="p-12 text-center text-xs text-slate-400">Loading student project submission...</div>;
   }
@@ -360,18 +322,8 @@ export const TeacherProjectReviewPage = () => {
                 </p>
               </div>
 
-              {/* Real-time score calculator badge & Autofill button */}
+              {/* Real-time score calculator badge */}
               <div className="flex flex-wrap items-center gap-3 self-start sm:self-auto">
-                <button
-                  type="button"
-                  onClick={handleAutofillGrading}
-                  className="inline-flex items-center space-x-1.5 px-3.5 py-2 bg-[#0B1320] hover:bg-[#1E293B] text-white text-xs font-semibold rounded-xl shadow-sm transition-all"
-                  title="Autofill realistic evaluation marks and comments across all rubric criteria"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Autofill Grading</span>
-                </button>
-
                 <div className="flex items-center space-x-3 bg-slate-50 p-2.5 sm:p-3 rounded-xl border border-slate-200">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Calculated Total</span>
@@ -468,18 +420,10 @@ export const TeacherProjectReviewPage = () => {
         {/* TAB 2: Title Decision System */}
         {activeTab === 'title' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div className="border-b border-slate-100 pb-3">
               <h2 className="text-base font-bold text-slate-900">
                 Project Title Review & Approval
               </h2>
-              <button
-                type="button"
-                onClick={handleAutofillTitleApproval}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-lg transition-colors border border-slate-200"
-              >
-                <Sparkles className="w-3 h-3 text-amber-500" />
-                <span>Autofill Title Approval</span>
-              </button>
             </div>
 
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">

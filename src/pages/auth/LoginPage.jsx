@@ -37,17 +37,6 @@ export const LoginPage = () => {
     }
   };
 
-  const handleAutofill = (type) => {
-    setError('');
-    if (type === 'student') {
-      setEmail('ali.ahmad@tuf.edu.pk');
-      setPassword('StudentPassword123');
-    } else if (type === 'admin') {
-      setEmail('faisalkamran867@gmail.com');
-      setPassword('FkAdmin@892#zQ!');
-    }
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 py-12">
       <div className="w-full max-w-md bg-white border border-slate-200 shadow-sm rounded-xl p-8">
@@ -58,27 +47,6 @@ export const LoginPage = () => {
           </div>
           <h1 className="text-xl font-bold tracking-tight text-slate-900">Project Portal Login</h1>
           <p className="text-xs text-slate-500 mt-1">Single sign-in for students, faculty, and administrators</p>
-        </div>
-
-        {/* Demo Quickfill Buttons */}
-        <div className="mb-6 p-3.5 bg-slate-50 border border-slate-200/80 rounded-lg">
-          <div className="text-[11px] font-medium text-slate-500 mb-2">Demo Quick Autofill</div>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => handleAutofill('student')}
-              className="flex-1 py-1.5 px-3 border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-md shadow-2xs transition-colors"
-            >
-              Student Demo
-            </button>
-            <button
-              type="button"
-              onClick={() => handleAutofill('admin')}
-              className="flex-1 py-1.5 px-3 border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-md shadow-2xs transition-colors"
-            >
-              Admin Demo
-            </button>
-          </div>
         </div>
 
         {/* Error Notice */}
